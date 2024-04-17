@@ -5,6 +5,6 @@ class HandleError extends Error {
     this.status = `${statusCode}`.startsWith("4") ? "fail" : "error";
     this.Operational = true;
     Error.captureStackTrace(this, this.constructor);
-  }
+  } 
 }
 export default HandleError;
