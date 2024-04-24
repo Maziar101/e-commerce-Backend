@@ -6,3 +6,4 @@ const catchError = (err,req,res,next)=>{
         message: err.message,
     });
 };
+export default catchError;
