@@ -9,6 +9,8 @@ import commentsRoute from "./routes/comments.js";
 import discountRoute from "./routes/discountCode.js";
 import productsRoute from "./routes/products.js";
 import usersRoute from "./routes/users.js";
+import HandleError from "./utils/handleError.js";
+import catchError from "./utils/CatchError.js";
 
 // Config
 
@@ -28,11 +30,9 @@ app.use('api/v1/discount-code',discountRoute);
 app.use('api/v1/products',productsRoute);
 app.use('api/v1/users',usersRoute);
 app.use('*',(req,res,next)=>{
-    res.status(404).json({
-        message: "Api Route Not Found",
-    });
+    next(new HandleError('api route not found',404));
 });
-
+app.use(catchError);
 
 
 export default app;
