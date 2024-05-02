@@ -7,3 +7,7 @@ export const createDiscount = catchAsync(async(req,res,next)=>{
 export const updateDiscount = catchAsync(async(req,res,next)=>{
 
 });
+
+export const deleteDiscount = catchAsync(async (req,res,next)=>{
+    
+});
