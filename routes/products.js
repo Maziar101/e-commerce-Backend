@@ -3,7 +3,7 @@ import { createProduct, deleteProduct, getAllProducts, getProductById, updatePro
 import adminOrSuperAdmin from "../middleware/adminSuperAdmin.js";
 const productsRoute = express.Router();
 
-productsRoute('/').get(getAllProducts).post(adminOrSuperAdmin,createProduct);
-productsRoute('/:id').get(getProductById).delete(adminOrSuperAdmin,deleteProduct).patch(adminOrSuperAdmin,updateProduct);
+productsRoute.route('/').get(getAllProducts).post(adminOrSuperAdmin,createProduct);
+productsRoute.route('/:id').get(getProductById).delete(adminOrSuperAdmin,deleteProduct).patch(adminOrSuperAdmin,updateProduct);
 
 export default productsRoute;

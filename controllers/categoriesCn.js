@@ -1,4 +1,4 @@
-import catchAsync from "../utils/CatchAsync";
+import catchAsync from "../utils/CatchAsync.js";
 
 export const getAllCategories = catchAsync(async(req,res,next)=>{
 

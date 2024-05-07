@@ -1,4 +1,4 @@
-import catchAsync from "../utils/CatchAsync";
+import catchAsync from "../utils/CatchAsync.js";
 
 
 export const getAllUsers = catchAsync(async ()=>{

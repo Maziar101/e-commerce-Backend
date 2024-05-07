@@ -1,6 +1,6 @@
-import catchAsync from "../utils/CatchAsync";
+import catchAsync from "../utils/CatchAsync.js";
 import jwt from "jsonwebtoken"
-import HandleError from "../utils/handleError";
+import HandleError from "../utils/handleError.js";
 
 const adminOrSuperAdmin = catchAsync(async (req,res,next)=>{
     const codeToken = req.headers.authorization.split(" ")[1];
