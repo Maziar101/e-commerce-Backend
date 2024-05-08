@@ -1,5 +1,5 @@
 import User from "../models/userModel.js";
-import catchAsync from "../utils/CatchAsync.js";
+import catchAsync from "../utils/catchAsync.js";
 import HandleError from "../utils/handleError.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -9,7 +9,8 @@ export const login = catchAsync(async (req,res,next)=>{
     if(!username || !password){
         new HandleError('please provide username and password',400)
     };
-    const user = User.findOne(username);
+
+    const user = await User.findOne({username});
     if(!user){
         new HandleError('username or password is incorrect',401);
     };
@@ -17,7 +18,9 @@ export const login = catchAsync(async (req,res,next)=>{
     if(!validPass){
         new HandleError('username or password is incorrect',401);
     };
+    
     const {password:hashPass,...userOthers} = user._doc;
+
     const sendMessage = await fetch("https://api.limosms.com/api/sendcode",{
         method: "POST",
         headers:{
@@ -55,7 +58,7 @@ export const register = catchAsync(async (req,res,next)=>{
 
 export const otp = catchAsync(async (req,res,next)=>{
     const {code,phone} = req.body;
-    const user = User.findOne({phone});
+    const user = await User.findOne({phone});
     const isValidCode = await fetch("https://api.limosms.com/api/checkcode",{
         method: "POST",
         headers:{
@@ -69,7 +72,7 @@ export const otp = catchAsync(async (req,res,next)=>{
     });
     const messageRes = await isValidCode.json();
     if(messageRes.success){
-        const token = jwt.sign({id:user._id,role:user.role},process.env.SMS_KEY);
+        const token = jwt.sign({id:user._id,role:user.role},process.env.JWT_SECRET);
         return res.status(200).json({
             status: "success",
             data:{
@@ -81,7 +84,7 @@ export const otp = catchAsync(async (req,res,next)=>{
     }else{
         return res.status(400).json({
             status: "failed",
-            message: "wrong code",
+            message: messageRes.message,
         });
     };
 });

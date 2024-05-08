@@ -15,7 +15,7 @@ const CategorySchema = new mongoose.Schema({
         trim: true,
     },
 });
-CategorySchema.pre('save',(next)=>{
+CategorySchema.pre('save',function(next){
     if(this.slug){
         next();
     }else{

@@ -6,12 +6,12 @@ const superAdmin = catchAsync(async (req,res,next)=>{
     const codeToken = req.headers.authorization.split(" ")[1];
     const token = jwt.verify(codeToken,process.env.JWT_SECRET);
     if(!token){
-        return new HandleError("Not Logged in",403);
+        next(new HandleError("Not Logged in",403));
     }
     if(token.role === 'superAdmin'){
-        return next()
+        next()
     }else{
-        return new HandleError("You don't have permission",403);
+        next(new HandleError("You don't have permission",403));
     }
 });
 

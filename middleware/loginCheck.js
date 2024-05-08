@@ -1,4 +1,4 @@
-import catchAsync from "../utils/CatchAsync.js";
+import catchAsync from "../utils/catchAsync.js";
 import jwt from "jsonwebtoken"
 import HandleError from "../utils/handleError.js";
 
@@ -8,7 +8,7 @@ const loginCheck = catchAsync(async (req,res,next)=>{
     if(token){
         return next()
     }else{
-        new HandleError("Not Logged in",403);
+        next(new HandleError("Not Logged in",403));
     }
 });
 

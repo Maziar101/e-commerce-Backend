@@ -1,17 +1,20 @@
-import catchAsync from "../utils/CatchAsync.js";
+import catchAsync from "../utils/catchAsync.js";
 import jwt from "jsonwebtoken"
 import HandleError from "../utils/handleError.js";
 
 const adminOrSuperAdmin = catchAsync(async (req,res,next)=>{
+    
     const codeToken = req.headers.authorization.split(" ")[1];
+    console.log(process.env.JWT_SECRET)
     const token = jwt.verify(codeToken,process.env.JWT_SECRET);
+
     if(!token){
-        return new HandleError("Not Logged in",403);
+        next(new HandleError("Not Logged in",403));
     }
     if(token.role === 'admin' || token.role === 'superAdmin'){
         return next()
     }else{
-        return new HandleError("You don't have permission",403);
+        next(new HandleError("You don't have permission",403));
     }
 });
 

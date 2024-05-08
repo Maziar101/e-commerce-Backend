@@ -42,14 +42,14 @@ app.use(async (req, res, next) => {
 
 // Routes
 
-app.use("api/v1/auth", authRoute);
-app.use("api/v1/cart", cartRoute);
-app.use("api/v1/categories", categoriesRoute);
-app.use("api/v1/log", logRouter);
-app.use("api/v1/comments", commentsRoute);
-app.use("api/v1/discount-code", discountRoute);
-app.use("api/v1/products", productsRoute);
-app.use("api/v1/users", usersRoute);
+app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/cart", cartRoute);
+app.use("/api/v1/categories", categoriesRoute);
+app.use("/api/v1/log", logRouter);
+app.use("/api/v1/comments", commentsRoute);
+app.use("/api/v1/discount-code", discountRoute);
+app.use("/api/v1/products", productsRoute);
+app.use("/api/v1/users", usersRoute);
 app.use("*", (req, res, next) => {
   next(new HandleError("api route not found", 404));
 });
