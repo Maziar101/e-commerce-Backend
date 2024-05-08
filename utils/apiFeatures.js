@@ -9,7 +9,7 @@ class apiFeatures {
     for (const key in feildsItem) {
       delete queryObj[key];
     }
-    this.query = this.query.find(queryObj);
+    this.query = this.query.find(queryObj.filters);
     return this;
   }
   sort() {
