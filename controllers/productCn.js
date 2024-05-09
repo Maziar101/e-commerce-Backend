@@ -19,14 +19,16 @@ export const getAllProducts = catchAsync(async (req, res, next) => {
 });
 
 export const getProductById = catchAsync(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
-  if (!product) {
+  try{
+    const product = await Product.findById(req.params.id);
+    return res.status(200).json({
+      status: "success",
+      data: { product },
+    });
+  }catch(err){
     next(new HandleError("Product Not Found", 404));
   }
-  return res.status(200).json({
-    status: "success",
-    data: { product },
-  });
+  
 });
 
 export const createProduct = catchAsync(async (req, res, next) => {
