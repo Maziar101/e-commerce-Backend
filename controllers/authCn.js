@@ -1,3 +1,4 @@
+import Cart from "../models/cartModel.js";
 import User from "../models/userModel.js";
 import catchAsync from "../utils/catchAsync.js";
 import HandleError from "../utils/handleError.js";
@@ -49,7 +50,8 @@ export const login = catchAsync(async (req,res,next)=>{
 export const register = catchAsync(async (req,res,next)=>{
     const {password, ...others} = req.body;
     const newPassword = bcryptjs.hashSync(password, 10);
-    const newUser = await User.create({others,password:newPassword});
+    const newUser = await User.create({...others,password:newPassword});
+    const newCart = await Cart.create({userId:newUser._id,products:[]});
     return res.status(201).json({
         status: "success",
         message: "register successfully",
