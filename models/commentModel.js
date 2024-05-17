@@ -9,7 +9,7 @@ const CommentSchema = new mongoose.Schema(
       type:String,
       required:true,
     },
-    product: {type:String, required: true},
+    product: {type: mongoose.Types.ObjectId, ref:"products", required: [true,"product id is required"]},
     replay: [
       {
         type:mongoose.Types.ObjectId,
