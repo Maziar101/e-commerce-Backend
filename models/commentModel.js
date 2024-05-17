@@ -11,8 +11,8 @@ const CommentSchema = new mongoose.Schema(
     },
     replay: [
       {
-        text: { type: String, required: true },
-        author: { type: String, required: true },
+        type:mongoose.Types.ObjectId,
+        ref:"Comments",
       },
     ],
   },

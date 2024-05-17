@@ -1,4 +1,4 @@
-import catchAsync from "../utils/CatchAsync.js";
+import catchAsync from "../utils/catchAsync.js";
 
 export const addComments = catchAsync(async(req,res,next)=>{
 
