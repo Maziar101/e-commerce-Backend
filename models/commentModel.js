@@ -9,6 +9,7 @@ const CommentSchema = new mongoose.Schema(
       type:String,
       required:true,
     },
+    product: {type:String, required: true},
     replay: [
       {
         type:mongoose.Types.ObjectId,
