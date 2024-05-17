@@ -53,3 +53,16 @@ export const removeComments = catchAsync(async (req, res, next) => {
     } 
   }
 });
+
+export const addReplay = catchAsync(async(req,res,next)=>{
+  const {id:commentId} = req.params;
+  const replayComment = await Comments.findByIdAndUpdate(commentId,{
+    $push:{
+      replay:req.body,
+    },
+  },{new:true});
+  return res.status(200).json({
+    status:"success",
+    data:{replayComment},
+  });
+});
