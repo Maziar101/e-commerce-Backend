@@ -17,6 +17,10 @@ const DiscountSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    percentNum:{
+        type: Number,
+        required: true
+    }
 },{timestamps:true});
 
 const DiscountCode = mongoose.model('Discount Codes',DiscountSchema);

@@ -5,9 +5,7 @@ import HandleError from "../utils/handleError.js";
 const adminOrSuperAdmin = catchAsync(async (req,res,next)=>{
     
     const codeToken = req.headers.authorization.split(" ")[1];
-    console.log(process.env.JWT_SECRET)
     const token = jwt.verify(codeToken,process.env.JWT_SECRET);
-
     if(!token){
         next(new HandleError("Not Logged in",403));
     }
