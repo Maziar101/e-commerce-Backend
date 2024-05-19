@@ -50,6 +50,11 @@ const productSchema = new mongoose.Schema({
   },
 },{timestamps:true});
 
+productSchema.pre('save',function(next){
+  this.slug = slugify(this.name,{lower:true});
+  next();
+});
+
 const Product = mongoose.model("Products", productSchema);
 
 export default Product;
