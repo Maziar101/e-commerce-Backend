@@ -14,6 +14,8 @@ import catchError from "./utils/CatchError.js";
 import jwt from "jsonwebtoken";
 import logRouter from "./routes/Logs.js";
 import Log from "./models/logModel.js";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 
 // Config
 
@@ -40,8 +42,26 @@ app.use(async (req, res, next) => {
   }
 });
 
-// Routes
+const swaggerDefinition = {
+  openapi:'3.0.0',
+  info:{
+    title:'e-commerce',
+    description:'e-commerce api',
+  },
+};
 
+const options={
+  swaggerDefinition,
+  apis:['./routes/*.js'],
+};
+
+const swaggerSpec=swaggerJSDoc(options);
+
+
+
+
+// Routes
+app.use("/api-docs",swaggerUi.serve,swaggerUi.setup(swaggerSpec));
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/cart", cartRoute);
 app.use("/api/v1/categories", categoriesRoute);

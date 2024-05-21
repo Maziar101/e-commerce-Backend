@@ -14,7 +14,7 @@ const CategorySchema = new mongoose.Schema({
         type: String, 
         trim: true,
     },
-});
+},{timestamps:true});
 CategorySchema.pre('save',function(next){
     if(this.slug){
         next();
