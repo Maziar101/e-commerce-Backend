@@ -52,6 +52,7 @@ export const register = catchAsync(async (req,res,next)=>{
     const newPassword = bcryptjs.hashSync(password, 10);
     const newUser = await User.create({...others,password:newPassword});
     const newCart = await Cart.create({userId:newUser._id,products:[]});
+    
     return res.status(201).json({
         status: "success",
         message: "register successfully",

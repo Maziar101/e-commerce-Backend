@@ -12,7 +12,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true,'Username is required'],
         unique: [true,'Username already exists'],
-        match: [/^[a-z0-9_-]{3,15}$/gm,'username is invalid'],
         trim: true,
     },
     password: {

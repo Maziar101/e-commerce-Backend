@@ -9,7 +9,7 @@ const CartSchema = mongoose.Schema({
     },
 },{timeStamps:true});
 
-CartSchema.pre('save',(next)=>{
+CartSchema.pre('save',function(next){
     let total = 0;
     if(this.products.length>0){
         this.products.map((e)=>totalPrice+=e.price*(1-e.discount/100)*e.quantity);
