@@ -72,7 +72,7 @@ export const updateCart = catchAsync(async () => {
       },
     });
   } else {
-    next(new HandleError("invalid property"));
+    next(new HandleError("invalid property",400));
   }
 });
 

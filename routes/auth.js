@@ -13,7 +13,7 @@ import { register, login, otp } from "../controllers/authCn.js";
  *              - password
  *              - phone
  *          properties:
- *              id:
+ *              _id:
  *                  type: string
  *                  description: The unique user id
  *              email:
@@ -50,7 +50,7 @@ import { register, login, otp } from "../controllers/authCn.js";
  *                  readOnly: true
  *                  description: When the user was updated
  *          example:
- *              id: 66511b128cad81a95adb85b8
+ *              _id: 66511b128cad81a95adb85b8
  *              email: simple@gmail.com
  *              username: Maziar111
  *              password: password123
