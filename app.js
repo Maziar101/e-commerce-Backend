@@ -12,10 +12,11 @@ import usersRoute from "./routes/users.js";
 import HandleError from "./utils/handleError.js";
 import catchError from "./utils/CatchError.js";
 import jwt from "jsonwebtoken";
-import logRouter from "./routes/Logs.js";
+import logRouter from "./routes/logs.js";
 import Log from "./models/logModel.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import searchRouter from "./routes/search.js";
 
 // Config
 
@@ -69,6 +70,7 @@ app.use("/api/v1/log", logRouter);
 app.use("/api/v1/comments", commentsRoute);
 app.use("/api/v1/discount-code", discountRoute);
 app.use("/api/v1/products", productsRoute);
+app.use("/api/v1/search",searchRouter);
 app.use("/api/v1/users", usersRoute);
 app.use("*", (req, res, next) => {
   next(new HandleError("api route not found", 404));
