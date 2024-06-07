@@ -7,6 +7,7 @@ const DiscountSchema = new mongoose.Schema({
     },
     code:{
         type: String,
+        required: true,
         unique: [true,'Code already exists'],
     },
     startTime:{

@@ -1,28 +1,31 @@
 import mongoose from "mongoose";
 
 const OrderSchema = new mongoose.Schema({
-    cart:{
+    cart: {
         type: Object,
-        required: [true,'cart is required'],
+        required: [true, 'cart is required'],
     },
-    userId:{
-        type:String,
-        required: [true,'userId is required'],
+    userId: {
+        type: String,
+        required: [true, 'userId is required'],
     },
-    status:{
-        type:String,
-        enum:['success','failed'],
+    status: {
+        type: String,
+        enum: ['success', 'failed'],
     },
-    bankTrackingCode:{
-        type:String,
+    bankTrackingCode: {
+        type: String,
     },
-    trackingCode:{
-        type:Number,
-        unique:true,
-        default:1000,
+    trackingCode: {
+        type: String,
     },
-},{timestamps:true});
+}, { timestamps: true });
 
-const OrderHistory = mongoose.model('OrderHistory',OrderSchema);
+OrderSchema.post('save', function (next) {
+    this.trackingCode = this._id;
+    next();
+});
+
+const OrderHistory = mongoose.model('OrderHistory', OrderSchema);
 
 export default OrderHistory
